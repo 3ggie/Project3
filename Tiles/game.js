@@ -39,6 +39,9 @@ var bullet = new PIXI.Texture.fromImage("keyb.png");
 var bulletSprite = new PIXI.Sprite(bullet);
 bulletSprite.visible = false;
 
+var keyman = new PIXI.Texture.fromImage("keyman.png");
+var keymanSprite = new PIXI.Sprite(keyman);
+keymanSprite.visible = false;
 
 
 
@@ -84,6 +87,12 @@ function onHoverStartGame(e){
 		bulletSprite.position.x = 40;
 		bulletSprite.position.y = 180;
 		backgroundSprite2.visible = true;
+		keymanSprite.x = -70;
+		keymanSprite.y = -20;
+		keymanSprite.scale.x = 2;
+		keymanSprite.scale.y = 2;
+
+		keymanSprite.visible = true;
 	}
 }
 
@@ -92,6 +101,9 @@ function offHoverStartGame(e){
 		doorclose.play();
 		bulletSprite.visible = false;
 		backgroundSprite2.visible = false;
+		keymanSprite.visible = false;
+
+
 	}
 }
 
@@ -155,6 +167,7 @@ function onDownCredits(e){
 MainScreen.addChild(backgroundSprite);
 MainScreen.addChild(backgroundSprite2);
 MainScreen.addChild(bulletSprite);
+MainScreen.addChild(keymanSprite);
 MainScreen.addChild(StartGame);
 MainScreen.addChild(Instructions);
 MainScreen.addChild(Credits);
