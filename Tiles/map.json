@@ -1,7 +1,7 @@
 { "height":12,
  "layers":[
         {
-         "data":[1, 2, 3, 1, 2, 1, 2, 2, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 2, 4, 2, 2, 1, 3, 1, 4, 1, 2, 2, 1, 1, 1, 2, 2, 1, 2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 1, 2, 2, 2, 4, 1, 1, 2, 1, 1, 2, 1, 4, 2, 1, 1, 2, 1, 1, 1, 1, 1, 4, 2, 1, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 2, 2, 2, 4, 2, 1, 1, 2, 3, 2, 2, 2, 2, 2, 4, 2, 2, 1, 1, 1, 2, 2, 1, 1, 1, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1, 3, 1, 2, 2, 1, 4, 2, 1, 2, 2, 4],
+         "data":[1, 1, 1, 4, 4, 2, 2, 4, 4, 3, 4, 2, 1, 1, 1, 4, 1, 4, 4, 2, 2, 4, 1, 4, 1, 1, 1, 4, 4, 4, 4, 2, 2, 4, 4, 1, 4, 3, 4, 4, 3, 4, 4, 2, 2, 4, 4, 4, 2, 2, 2, 2, 2, 4, 4, 4, 4, 3, 3, 4, 4, 4, 4, 4, 2, 2, 4, 4, 1, 4, 4, 4, 4, 1, 1, 4, 4, 2, 2, 2, 1, 2, 2, 4, 4, 4, 4, 4, 4, 3, 4, 1, 1, 1, 2, 4, 4, 3, 4, 4, 4, 4, 4, 1, 1, 4, 2, 3, 4, 4, 4, 2, 2, 4, 4, 4, 3, 4, 2, 2, 3, 1, 3, 2, 2, 4, 4, 1, 4, 4, 3, 2, 4, 4, 4, 1, 4, 4, 3, 4, 4, 1, 4, 2],
          "height":12,
          "name":"Tile Layer 1",
          "opacity":1,
@@ -14,36 +14,36 @@
  "nextobjectid":1,
  "orientation":"orthogonal",
  "renderorder":"right-up",
- "tileheight":16,
+ "tileheight":32,
  "tilesets":[
         {
          "columns":2,
          "firstgid":1,
-         "image":"map.png",
-         "imageheight":38,
-         "imagewidth":38,
-         "margin":2,
-         "name":"map",
-         "spacing":2,
+         "image":"..\/..\/tileset.png",
+         "imageheight":64,
+         "imagewidth":64,
+         "margin":0,
+         "name":"tileset",
+         "spacing":0,
          "tilecount":4,
-         "tileheight":16,
+         "tileheight":32,
          "tileproperties":
             {
              "0":
                 {
-                 "name":"trees"
+                 "name":"tree"
                 },
              "1":
                 {
-                 "name":"sand"
+                 "name":"dirt"
                 },
              "2":
                 {
-                 "name":"sign"
+                 "name":"rock"
                 },
              "3":
                 {
-                 "name":"rock"
+                 "name":"sand"
                 }
             },
          "tilepropertytypes":
@@ -65,9 +65,9 @@
                  "name":"string"
                 }
             },
-         "tilewidth":16
+         "tilewidth":32
         }],
- "tilewidth":16,
+ "tilewidth":32,
  "version":1,
  "width":12
 }

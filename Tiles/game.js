@@ -39,7 +39,7 @@ var bullet = new PIXI.Texture.fromImage("keyb.png");
 var bulletSprite = new PIXI.Sprite(bullet);
 bulletSprite.visible = false;
 
-var keyman = new PIXI.Texture.fromImage("keyman.png");
+var keyman = new PIXI.Texture.fromImage("keyman2.png");
 var keymanSprite = new PIXI.Sprite(keyman);
 keymanSprite.visible = false;
 
@@ -91,8 +91,8 @@ function onHoverStartGame(e){
 		backgroundSprite2.visible = true;
 		keymanSprite.x = -70;
 		keymanSprite.y = -20;
-		keymanSprite.scale.x = 2;
-		keymanSprite.scale.y = 2;
+		keymanSprite.scale.x = 1;
+		keymanSprite.scale.y = 1;
 
 		keymanSprite.visible = true;
 	}
