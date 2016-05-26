@@ -68,6 +68,7 @@ StartGame.on('mouseout', offHoverStartGame);
 Instructions.interactive = true;
 Instructions.on('mouseover', onHoverInstructions);
 Instructions.on('mouseout', offHoverInstructions);
+Instructions.on('mousedown', onDownInstructions);
 
 
 
@@ -148,7 +149,7 @@ function onDownStartGame(e){
 }
 
 function onDownInstructions(e){
-
+	animateInstructions();
 }
 
 function onDownCredits(e){
