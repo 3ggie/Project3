@@ -4,135 +4,167 @@ var gameport = document.getElementById("gameport");
 var renderer = PIXI.autoDetectRenderer(400, 400);
 gameport.appendChild(renderer.view);
 
-/*Creating global variables, stages, and staging*/
 
-var timeKeeper = setInterval(keepTime, 1000);
-var EndGame = false;
-var stage = new PIXI.Container();
-var score = 0;
-var GameOver = new PIXI.Text("Hearts Eaten: " + score, {font:"20px Arial", fill:"black"});
-var scoreBoard = new PIXI.Text("Hearts Eaten: " + score, {font:"20px Arial", fill:"black"});
-scoreBoard.position.x = 0;
-scoreBoard.position.y = 0;
 
-var timer = 30;
-var timerBoard = new PIXI.Text("Timer: " + timer, {font:"20px Arial", fill:"black"})
-timerBoard.position.x = 300;
-timerBoard.position.y = 0;
 
-//Beach Sprite
-var beach = new PIXI.Texture.fromImage("beach.png");
-var beachSprite = new PIXI.Sprite(beach);
 
-beachSprite.anchor.x = 0.5;
-beachSprite.anchor.y = 0.5;
+PIXI.SCALE_MODES.DEFAULT = PIXI.SCALE_MODES.NEAREST;
 
-beachSprite.position.x = 200;
-beachSprite.position.y = 200;
+PIXI.loader
+.add("dooropen.wav")
+.add("doorclose.wav")
+.add("hovernoise.wav")
+.load(ready);
 
-//Character Sprite
-var zombie = PIXI.Texture.fromImage("zombie.png");
-var zombieSprite = new PIXI.Sprite(zombie);
+var dooropen;
+var doorclose;
+var hovernoise;
+function ready(){
+	dooropen = PIXI.audioManager.getAudio("dooropen.wav");
+  doorclose = PIXI.audioManager.getAudio("doorclose.wav");
+	hovernoise = PIXI.audioManager.getAudio("hovernoise.wav");
 
-zombieSprite.anchor.x = 0.5;
-zombieSprite.anchor.y = 0.5;
+}
 
-zombieSprite.position.x = 200;
-zombieSprite.position.y = 200;
+var background = new PIXI.Texture.fromImage("p3bk.png");
+var backgroundSprite = new PIXI.Sprite(background);
 
-//Heart Sprite
-var heart = PIXI.Texture.fromImage("heart.png");
-var heartSprite = new PIXI.Sprite(heart);
 
-heartSprite.anchor.x = 0.5;
-heartSprite.anchor.y = 0.5;
+var background2 = new PIXI.Texture.fromImage("p3bk2.png");
+var backgroundSprite2 = new PIXI.Sprite(background2);
+backgroundSprite2.visible = false;
 
-heartSprite.position.x = 100;
-heartSprite.position.y = 100;
 
-//Container that holds my elements
-stage.addChild(beachSprite);
-stage.addChild(zombieSprite);
-stage.addChild(heartSprite);
-stage.addChild(scoreBoard);
-stage.addChild(timerBoard);
+var bullet = new PIXI.Texture.fromImage("keyb.png");
+var bulletSprite = new PIXI.Sprite(bullet);
+bulletSprite.visible = false;
 
-//On Click
-document.addEventListener('keydown', Controller);
-animate();
+
+
+
+
+var MainScreen = new PIXI.Container();
+
+var StartGame = new PIXI.Text("Start Game", {font:"30px Castellar", fill:"black"});
+StartGame.position.x = 100;
+StartGame.position.y = 200;
+
+var Instructions = new PIXI.Text("Instructions", {font:"30px Castellar", fill:"black"});
+Instructions.x = 100;
+Instructions.y = 250;
+
+var Credits = new PIXI.Text("Credits", {font:"30px Castellar", fill:"black"});
+Credits.x = 100;
+Credits.y = 300;
+
+StartGame.interactive = true;
+StartGame.on('mouseover', onHoverStartGame);
+StartGame.on('mouseout', offHoverStartGame);
+
+
+Instructions.interactive = true;
+Instructions.on('mouseover', onHoverInstructions);
+Instructions.on('mouseout', offHoverInstructions);
+
+
+
+
+
+Credits.interactive = true;
+Credits.on('mousedown', onDownCredits);
+Credits.on('mouseover', onHoverCredits);
+Credits.on('mouseout', offHoverCredits);
+
+
+
+function onHoverStartGame(e){
+	if(this == StartGame ){
+		dooropen.play();
+		bulletSprite.visible = true;
+		bulletSprite.position.x = 40;
+		bulletSprite.position.y = 180;
+		backgroundSprite2.visible = true;
+	}
+}
+
+function offHoverStartGame(e){
+	if(this == StartGame){
+		doorclose.play();
+		bulletSprite.visible = false;
+		backgroundSprite2.visible = false;
+	}
+}
+
+function onHoverInstructions(e){
+	if(this == Instructions ){
+		hovernoise.play();
+		bulletSprite.visible = true;
+		bulletSprite.position.x = 40;
+		bulletSprite.position.y = 230;
+
+	}
+}
+
+function offHoverInstructions(e){
+	if(this == Instructions){
+		bulletSprite.visible = false;
+
+	}
+}
+
+
+function onHoverCredits(e){
+	if(this == Credits ){
+		hovernoise.play();
+		bulletSprite.visible = true;
+		bulletSprite.position.x = 40;
+		bulletSprite.position.y = 280;
+
+	}
+}
+
+function offHoverCredits(e){
+	if(this == Credits){
+		bulletSprite.visible = false;
+
+	}
+}
+
+
+function onDownStartGame(e){
+
+}
+
+function onDownInstructions(e){
+
+}
+
+function onDownCredits(e){
+	animateCredits();
+}
+
+
+
+
+
+
+
+
+
+
+MainScreen.addChild(backgroundSprite);
+MainScreen.addChild(backgroundSprite2);
+MainScreen.addChild(bulletSprite);
+MainScreen.addChild(StartGame);
+MainScreen.addChild(Instructions);
+MainScreen.addChild(Credits);
+
+
+
+
+
 function animate() {
 	requestAnimationFrame(animate);
-	renderer.render(stage);
-	Eaten();
+	renderer.render(MainScreen);
 }
-
-/*Decrement the 30 second timer
-When the timer has reached 0 I stop the keybaord functionality and the
-user must restart the browser to play again.*/
-function keepTime(){
-  timer -= 1;
-  timerBoard.setText("Timer: " + timer);
-  if(timer == 0){
-    GameOver.position.x = 65;
-    GameOver.position.y = 200;
-    GameOver.setText("You've Eaten " + score + " Hearts" + "\n" + "To Play Again, Restart The Browser");
-    stage.addChild(GameOver);
-    EndGame = true;
-    clearInterval(timeKeeper);
-
-  }
-}
-
-
-//Finding a random space on the map for the heart to spawn
-function spawnHeart() {
-    var randx = 10 * Math.floor((Math.random() * 39) + 1);
-    var randy = 10 * Math.floor((Math.random() * 39) + 1);
-    heartSprite.position.x = randx;
-    heartSprite.position.y = randy;
-}
-//Calling spawnHeart function
-spawnHeart();
-
-//checks to see if the zombie has eaten a heart
-function Eaten() {
-
-    if (heartSprite.position.x === zombieSprite.position.x && heartSprite.position.y === zombieSprite.position.y) {
-        score += 1;
-        scoreBoard.setText("Hearts Eaten: " + score);
-        spawnHeart();
-    }
-}
-
-//wasd and arrow keys funcionality
-function Controller(key) {
-    if(!EndGame){
-      if (key.keyCode === 87 || key.keyCode === 38) {
-
-        key.preventDefault();
-          if (zombieSprite.position.y != 10) {
-              zombieSprite.position.y -= 10;
-          }
-      }
-
-      if (key.keyCode === 65 || key.keyCode === 37) {
-        key.preventDefault();
-          if (zombieSprite.position.x != 10) {
-              zombieSprite.position.x -= 10;
-          }
-      }
-
-      if (key.keyCode === 68 || key.keyCode === 39) {
-        key.preventDefault();
-          if (zombieSprite.position.x != renderer.width - 10) {
-              zombieSprite.position.x += 10;
-          }
-      }
-      if (key.keyCode === 83 || key.keyCode === 40) {
-        key.preventDefault();
-          if (zombieSprite.position.y != renderer.height - 10) {
-              zombieSprite.position.y += 10;
-          }
-      }
-    }
-}
+animate();
