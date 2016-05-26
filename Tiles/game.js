@@ -61,6 +61,7 @@ Credits.x = 100;
 Credits.y = 300;
 
 StartGame.interactive = true;
+StartGame.on('mousedown', onDownStartGame);
 StartGame.on('mouseover', onHoverStartGame);
 StartGame.on('mouseout', offHoverStartGame);
 
@@ -145,7 +146,7 @@ function offHoverCredits(e){
 
 
 function onDownStartGame(e){
-
+	animatePlay();
 }
 
 function onDownInstructions(e){
