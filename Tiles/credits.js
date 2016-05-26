@@ -17,8 +17,8 @@ var backSprite2 = new PIXI.Sprite(back2);
 
 backSprite2.interactive = true;
 backSprite2.position.x = 0;
-backSprite2.position.y = 0;
-backSprite2.visible = false;
+backSprite2.position.y = -20;
+
 
 
 
@@ -31,7 +31,7 @@ var back = new PIXI.Texture.fromImage("back.png");
 var backSprite = new PIXI.Sprite(back);
 
 backSprite.position.x = 0;
-backSprite.position.y = 0;
+backSprite.position.y = -20;
 
 
 backSprite.interactive = true;
