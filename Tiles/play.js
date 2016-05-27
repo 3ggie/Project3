@@ -34,6 +34,8 @@ function ready() {
   stagePlay.addChild(pinkkeySprite);
 	stagePlay.addChild(ydoorcSprite);
 	stagePlay.addChild(ydooroSprite);
+	stagePlay.addChild(rdoorcSprite);
+	stagePlay.addChild(rdooroSprite);
 
   var frames = [];
 
@@ -84,7 +86,6 @@ document.addEventListener('keydown', Controller);
   }
 
 
-
 	var ydoorc = PIXI.Texture.fromImage("ydoorc.png");
 	var ydoorcSprite = new PIXI.Sprite(ydoorc);
 
@@ -98,6 +99,22 @@ document.addEventListener('keydown', Controller);
 	ydooroSprite.position.x = 200;
 	ydooroSprite.position.y = 200;
 	ydooroSprite.visible = false;
+
+
+
+	var rdoorc = PIXI.Texture.fromImage("rdoorc.png");
+	var rdoorcSprite = new PIXI.Sprite(rdoorc);
+
+	rdoorcSprite.position.x = 200;
+	rdoorcSprite.position.y = 250;
+
+
+	var rdooro = PIXI.Texture.fromImage("rdooro.png");
+	var rdooroSprite = new PIXI.Sprite(rdooro);
+
+	rdooroSprite.position.x = 200;
+	rdooroSprite.position.y = 250;
+	rdooroSprite.visible = false;
 
 
 //Key Instantiation
@@ -275,6 +292,14 @@ function openDoors(){
 		ydooroSprite.visible = true;
 		haskey = false;
 		hasyellow = false;
+		}
+	}
+  if(tu.getIndex(rdoorcSprite.x, rdoorcSprite.y, 32, 32, 12) == tu.getIndex(player.x, player.y, 32, 32, 12)){
+		if(haskey && hasred){
+		rdoorcSprite.visible = false;
+		rdooroSprite.visible = true;
+		haskey = false;
+		hasred = false;
 		}
 	}
 
