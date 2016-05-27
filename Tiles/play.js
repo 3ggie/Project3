@@ -36,6 +36,16 @@ function ready() {
 	stagePlay.addChild(ydooroSprite);
 	stagePlay.addChild(rdoorcSprite);
 	stagePlay.addChild(rdooroSprite);
+  stagePlay.addChild(gdoorcSprite);
+  stagePlay.addChild(gdooroSprite);
+  stagePlay.addChild(wdoorcSprite);
+  stagePlay.addChild(wdooroSprite);
+  stagePlay.addChild(pdoorcSprite);
+  stagePlay.addChild(pdooroSprite);
+  stagePlay.addChild(bdoorcSprite);
+  stagePlay.addChild(bdooroSprite);
+  stagePlay.addChild(odoorcSprite);
+  stagePlay.addChild(odooroSprite);
 
   var frames = [];
 
@@ -115,6 +125,86 @@ document.addEventListener('keydown', Controller);
 	rdooroSprite.position.x = 200;
 	rdooroSprite.position.y = 250;
 	rdooroSprite.visible = false;
+
+
+
+  var gdoorc = PIXI.Texture.fromImage("gdoorc.png");
+  var gdoorcSprite = new PIXI.Sprite(gdoorc);
+
+  gdoorcSprite.position.x = 250;
+  gdoorcSprite.position.y = 150;
+
+
+  var gdooro = PIXI.Texture.fromImage("gdooro.png");
+  var gdooroSprite = new PIXI.Sprite(gdooro);
+
+  gdooroSprite.position.x = 250;
+  gdooroSprite.position.y = 150;
+  gdooroSprite.visible = false;
+
+  var odoorc = PIXI.Texture.fromImage("odoorc.png");
+  var odoorcSprite = new PIXI.Sprite(odoorc);
+
+  odoorcSprite.position.x = 100;
+  odoorcSprite.position.y = 100;
+
+
+  var odooro = PIXI.Texture.fromImage("odooro.png");
+  var odooroSprite = new PIXI.Sprite(odooro);
+
+  odooroSprite.position.x = 100;
+  odooroSprite.position.y = 100;
+  odooroSprite.visible = false;
+
+
+  var pdoorc = PIXI.Texture.fromImage("pdoorc.png");
+  var pdoorcSprite = new PIXI.Sprite(pdoorc);
+
+  pdoorcSprite.position.x = 180;
+  pdoorcSprite.position.y = 250;
+
+
+  var pdooro = PIXI.Texture.fromImage("pdooro.png");
+  var pdooroSprite = new PIXI.Sprite(pdooro);
+
+  pdooroSprite.position.x = 180;
+  pdooroSprite.position.y = 250;
+  pdooroSprite.visible = false;
+
+
+  var wdoorc = PIXI.Texture.fromImage("wdoorc.png");
+  var wdoorcSprite = new PIXI.Sprite(wdoorc);
+
+  wdoorcSprite.position.x = 300;
+  wdoorcSprite.position.y = 300;
+
+
+  var wdooro = PIXI.Texture.fromImage("wdooro.png");
+  var wdooroSprite = new PIXI.Sprite(wdooro);
+
+  wdooroSprite.position.x = 300;
+  wdooroSprite.position.y = 300;
+  wdooroSprite.visible = false;
+
+
+
+
+    var bdoorc = PIXI.Texture.fromImage("bdoorc.png");
+    var bdoorcSprite = new PIXI.Sprite(bdoorc);
+
+    bdoorcSprite.position.x = 280;
+    bdoorcSprite.position.y = 320;
+
+
+    var bdooro = PIXI.Texture.fromImage("bdooro.png");
+    var bdooroSprite = new PIXI.Sprite(bdooro);
+
+    bdooroSprite.position.x = 280;
+    bdooroSprite.position.y = 320;
+    bdooroSprite.visible = false;
+
+
+
 
 
 //Key Instantiation
@@ -230,6 +320,7 @@ var haswhite = false;
 var haspink = false;
 var hasorange = false;
 var hasgreen = false;
+var score = 0;
 
 
 
@@ -237,43 +328,43 @@ function GrabbedKey() {
 
 	if(haskey == false){
 		if(tu.getIndex(yellowkeySprite.x, yellowkeySprite.y, 32, 32, 12) == tu.getIndex(player.x, player.y, 32, 32, 12)){
-			spawnyellowkey();
+			stagePlay.removeChild(yellowkeySprite);
 			haskey = true;
 			hasyellow = true;
 			openDoors();
 		}
 		if(tu.getIndex(bluekeySprite.x, bluekeySprite.y, 32, 32, 12) == tu.getIndex(player.x, player.y, 32, 32, 12)){
-			spawnbluekey();
+			stagePlay.removeChild(bluekeySprite);
 			hasblue = true;
 			haskey = true;
 			openDoors();
 		}
 		if(tu.getIndex(whitekeySprite.x, whitekeySprite.y, 32, 32, 12) == tu.getIndex(player.x, player.y, 32, 32, 12)){
-			spawnwhitekey();
+			stagePlay.removeChild(whitekeySprite);
 			haswhite = true;
 			haskey = true;
 			openDoors();
 		}
 		if(tu.getIndex(greenkeySprite.x, greenkeySprite.y, 32, 32, 12) == tu.getIndex(player.x, player.y, 32, 32, 12)){
-			spawngreenkey();
+			stagePlay.removeChild(greenkeySprite);
 			hasgreen = true;
 			haskey = true;
 			openDoors();
 		}
 		if(tu.getIndex(redkeySprite.x, redkeySprite.y, 32, 32, 12) == tu.getIndex(player.x, player.y, 32, 32, 12)){
-			spawnredkey();
+			stagePlay.removeChild(redkeySprite);
 			hasred = true;
 			haskey = true;
 			openDoors();
 		}
 		if(tu.getIndex(pinkkeySprite.x, pinkkeySprite.y, 32, 32, 12) == tu.getIndex(player.x, player.y, 32, 32, 12)){
-			spawnpinkkey();
+			stagePlay.removeChild(pinkkeySprite);
 			haspink = true;
 			haskey = true;
 			openDoors();
 		}
 		if(tu.getIndex(orangekeySprite.x, orangekeySprite.y, 32, 32, 12) == tu.getIndex(player.x, player.y, 32, 32, 12)){
-			spawnorangekey();
+			stagePlay.removeChild(orangekeySprite);
 			hasorange = true;
 			haskey = true;
 			openDoors();
@@ -292,6 +383,8 @@ function openDoors(){
 		ydooroSprite.visible = true;
 		haskey = false;
 		hasyellow = false;
+    score++;
+
 		}
 	}
   if(tu.getIndex(rdoorcSprite.x, rdoorcSprite.y, 32, 32, 12) == tu.getIndex(player.x, player.y, 32, 32, 12)){
@@ -300,13 +393,70 @@ function openDoors(){
 		rdooroSprite.visible = true;
 		haskey = false;
 		hasred = false;
+    score++;
 		}
 	}
+
+  if(tu.getIndex(gdoorcSprite.x, gdoorcSprite.y, 32, 32, 12) == tu.getIndex(player.x, player.y, 32, 32, 12)){
+		if(haskey && hasgreen){
+		gdoorcSprite.visible = false;
+		gdooroSprite.visible = true;
+		haskey = false;
+		hasgreen = false;
+    score++;
+		}
+	}
+  if(tu.getIndex(bdoorcSprite.x, bdoorcSprite.y, 32, 32, 12) == tu.getIndex(player.x, player.y, 32, 32, 12)){
+    if(haskey && hasblue){
+    bdoorcSprite.visible = false;
+    bdooroSprite.visible = true;
+    haskey = false;
+    hasblue = false;
+    score++;
+    }
+  }
+  if(tu.getIndex(pdoorcSprite.x, pdoorcSprite.y, 32, 32, 12) == tu.getIndex(player.x, player.y, 32, 32, 12)){
+    if(haskey && haspink){
+    pdoorcSprite.visible = false;
+    pdooroSprite.visible = true;
+    haskey = false;
+    haspink = false;
+    score++;
+    }
+  }
+  if(tu.getIndex(wdoorcSprite.x, wdoorcSprite.y, 32, 32, 12) == tu.getIndex(player.x, player.y, 32, 32, 12)){
+    if(haskey && haswhite){
+    wdoorcSprite.visible = false;
+    wdooroSprite.visible = true;
+    haskey = false;
+    haswhite = false;
+    score++;
+    }
+  }
+  if(tu.getIndex(odoorcSprite.x, odoorcSprite.y, 32, 32, 12) == tu.getIndex(player.x, player.y, 32, 32, 12)){
+    if(haskey && hasorange){
+    odoorcSprite.visible = false;
+    odooroSprite.visible = true;
+    haskey = false;
+    hasorange = false;
+    score++;
+    }
+  }
+
+
+
+
+
 
 }
 
 
+function checkScore(){
+  if(score == 7){
+    console.log("YOU WIN NIGGA");
 
+  }
+ }
 
 
 
@@ -316,6 +466,7 @@ function animatePlay() {
   update_camera();
 	GrabbedKey();
 	openDoors();
+  checkScore();
 }
 animatePlay();
 
